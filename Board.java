@@ -70,8 +70,7 @@ public class Board {
     this.isFirstPlayerTurn = currentBoard.isFirstPlayerTurn;
   }
 
-  public boolean hasPlayerOneWon() {
-    
+  public boolean hasPlayerWon(int player) {
     boolean isWin = false;
 
     // Check rows for win
@@ -79,7 +78,7 @@ public class Board {
       for (int col = 0; col < this.board[0].length -3; col++) {
 	// 4 in a row
 	for (int index = 0; index < 4; index++) {
-	  if (this.board[row][col+index] != FIRST_PLAYER_SPACE) {
+	  if (this.board[row][col+index] != player) {
 	    break;
 	  }
 	  if (index == 3) {
@@ -94,7 +93,7 @@ public class Board {
       for (int col = 0; col < this.board[0].length; col++) {
 	// 4 in a row
 	for (int index = 0; index < 4; index++) {
-	  if (this.board[row+index][col] != FIRST_PLAYER_SPACE) {
+	  if (this.board[row+index][col] != player) {
 	    break;
 	  }
 	  if (index == 3) {
@@ -109,7 +108,7 @@ public class Board {
       for (int col = 0; col < this.board[0].length -3; col++) {
 	// 4 in a row
 	for (int index = 0; index < 4; index++) {
-	  if (this.board[row+index][col+index] != FIRST_PLAYER_SPACE) {
+	  if (this.board[row+index][col+index] != player) {
 	    break;
 	  }
 	  if (index == 3) {
