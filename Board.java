@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Board {
     public int[][] board;
@@ -129,5 +130,10 @@ public class Board {
 	    System.out.println("|");
         }
 	System.out.println();
+    }
+
+    public int getUserInput(Scanner input) {
+	System.out.print("What move do you make?: ");
+	return Integer.parseInt(input.nextLine());
     }
 }
