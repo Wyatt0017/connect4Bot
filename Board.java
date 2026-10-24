@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Board {
   public int[][] board;
@@ -23,5 +24,42 @@ public class Board {
     }
 
     return possibleMoves;
+  }
+
+  public Board testMove(int column) {
+    ArrayList<Integer> possibleMoves = this.generatePossibleMoves();
+
+    // Error Handling
+    if (!possibleMoves.contains(column)) {
+      throw new IllegalArgumentException("Invalid column given");
+    }
+
+    Board testBoard = new Board();
+    
+    // Make a copy of the current board
+    testBoard.board = new int[this.board.length][this.board[0].length];
+    for (int row = 0; row < this.board.length; row++) {
+      testBoard.board[row] = Arrays.copyOf(this.board[row], this.board[row].length);
+    }
+
+    testBoard.isFirstPlayerTurn = !this.isFirstPlayerTurn;
+
+    for (int row = this.board.length-1; row >= 0; row--) {
+      if (testBoard.board[row][column] == BLANK_SPACE) {
+
+	// Set the current space with the player's piece
+	if (this.isFirstPlayerTurn == true) {
+	  testBoard.board[row][column] = FIRST_PLAYER_SPACE;
+	}
+	else {
+	  testBoard.board[row][column] = SECOND_PLAYER_SPACE;
+	}
+
+	// Break out of the loop
+	break;
+      }
+    }
+
+    return testBoard;
   }
 }
