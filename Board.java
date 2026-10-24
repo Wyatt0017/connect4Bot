@@ -1,5 +1,3 @@
-import java.util.Collections;
-import java.util.List;
 import java.util.ArrayList;
 
 public class Board {
@@ -15,7 +13,7 @@ public class Board {
     this.isFirstPlayerTurn = true;
   }
 
-  public ArrayList<Integer> generateMoves() {
+  public ArrayList<Integer> generatePossibleMoves() {
     ArrayList<Integer> possibleMoves = new ArrayList<Integer>();
 
     for (int column = 0; column < this.board[0].length; column++) {
