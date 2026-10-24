@@ -62,4 +62,63 @@ public class Board {
 
     return testBoard;
   }
+
+  public void playMove(int column) {
+    Board currentBoard = testMove(column);
+
+    this.board = currentBoard.board;
+    this.isFirstPlayerTurn = currentBoard.isFirstPlayerTurn;
+  }
+
+  public boolean hasPlayerOneWon() {
+    
+    boolean isWin = false;
+
+    // Check rows for win
+    for (int row = 0; row < this.board.length; row++) {
+      for (int col = 0; col < this.board[0].length -3; col++) {
+	// 4 in a row
+	for (int index = 0; index < 4; index++) {
+	  if (this.board[row][col+index] != FIRST_PLAYER_SPACE) {
+	    break;
+	  }
+	  if (index == 3) {
+	    isWin = true;
+	  }
+	}
+      }
+    }
+
+    // Check cols for win
+    for (int row = 0; row < this.board.length -3; row++) {
+      for (int col = 0; col < this.board[0].length; col++) {
+	// 4 in a row
+	for (int index = 0; index < 4; index++) {
+	  if (this.board[row+index][col] != FIRST_PLAYER_SPACE) {
+	    break;
+	  }
+	  if (index == 3) {
+	    isWin = true;
+	  }
+	}
+      }
+    }
+
+    // Check Diag for win
+    for (int row = 0; row < this.board.length -3; row++) {
+      for (int col = 0; col < this.board[0].length -3; col++) {
+	// 4 in a row
+	for (int index = 0; index < 4; index++) {
+	  if (this.board[row+index][col+index] != FIRST_PLAYER_SPACE) {
+	    break;
+	  }
+	  if (index == 3) {
+	    isWin = true;
+	  }
+	}
+      }
+    }
+
+    return isWin;
+  }
 }
