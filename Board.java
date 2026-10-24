@@ -62,4 +62,11 @@ public class Board {
 
     return testBoard;
   }
+
+  public void playMove(int column) {
+    Board currentBoard = testMove(column);
+
+    this.board = currentBoard.board;
+    this.isFirstPlayerTurn = currentBoard.isFirstPlayerTurn;
+  }
 }
