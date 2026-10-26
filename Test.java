@@ -14,6 +14,7 @@ public class Test {
 	checkTest("generatePossibleMovesTest2", () -> generatePossibleMovesTest2());
 	checkTest("testMoveTest1", () -> testMoveTest1());
 	checkTest("testMoveTest2", () -> testMoveTest2());
+	checkTest("testMoveErrorTest", () -> testMoveErrorTest());
 
 	System.out.println();
 	System.out.println("-------------- End Of Tests ---------------------");
@@ -25,10 +26,10 @@ public class Test {
 	boolean test();
     }
 
-    int testsSuccessful = 0;
-    int testsFailedWithoutError = 0;
-    int testsFailedWithError = 0;
-    int totalTests = 0;
+    public int testsSuccessful = 0;
+    public int testsFailedWithoutError = 0;
+    public int testsFailedWithError = 0;
+    public int totalTests = 0;
 
     public void checkTest(String testName, UnitTest methodName) {
 	boolean result = false;
@@ -144,5 +145,30 @@ public class Test {
 	    Arrays.deepEquals(test3.board, expectedBoardState) &&
 	    test3.isFirstPlayerTurn == expectedIsFirstPlayerTurn
 	);
+    }
+
+    public boolean testMoveErrorTest() {
+	int[][] testBoardState = new int[][]{
+	    {0, 0, 0, 2, 0, 0, 0},
+	    {0, 0, 0, 1, 0, 0, 0},
+	    {0, 0, 0, 2, 0, 0, 0},
+	    {0, 0, 0, 1, 0, 0, 0},
+	    {0, 0, 0, 2, 0, 0, 0},
+	    {0, 0, 0, 1, 0, 0, 0},
+	};
+
+	Board test = new Board();
+	test.board = testBoardState;
+
+	try {
+	    test.testMove(3);
+	}
+	catch (Exception e) {
+	    if (e.getMessage().equals("Invalid column given")) {
+		return true;
+	    }
+	    throw e;
+	}
+	return false;
     }
 }
