@@ -1,11 +1,12 @@
 import java.util.Arrays;
 
-@FunctionalInterface 
-public interface MethodName {
-    boolean test();
-}
 
 public class Tests {
+
+    @FunctionalInterface 
+    public interface MethodName {
+	boolean test();
+    }
 
     public void checkTest(String testName, MethodName methodName) {
 	boolean result = methodName.test();
