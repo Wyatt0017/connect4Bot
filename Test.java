@@ -4,6 +4,19 @@ import java.util.ArrayList;
 
 public class Test {
 
+    public void main(String[] args) {
+	System.out.println("------------- Start Of Tests --------------------");
+	System.out.println();
+
+	// Tests
+	checkTest("boardInitTest", () -> boardInitTest());
+	checkTest("generatePossibleMovesTest1", () -> generatePossibleMovesTest1());
+	checkTest("generatePossibleMovesTest2", () -> generatePossibleMovesTest2());
+
+	System.out.println();
+	System.out.println("-------------- End Of Tests ---------------------");
+    }
+
     @FunctionalInterface 
     public interface UnitTest {
 	boolean test();
@@ -72,16 +85,4 @@ public class Test {
 	);
     }
 
-    public void main(String[] args) {
-	System.out.println("------------- Start Of Tests --------------------");
-	System.out.println();
-
-	// Tests
-	checkTest("boardInitTest", () -> boardInitTest());
-	checkTest("generatePossibleMovesTest1", () -> generatePossibleMovesTest1());
-	checkTest("generatePossibleMovesTest2", () -> generatePossibleMovesTest2());
-
-	System.out.println();
-	System.out.println("-------------- End Of Tests ---------------------");
-    }
 }
