@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.ArrayList;
 
 
 public class Tests {
@@ -18,7 +19,7 @@ public class Tests {
 	}
     }
 
-    public boolean testBoardInit() {
+    public boolean boardInitTest() {
 	int[][] expectedBoard = new int[][]{
 	    {0, 0, 0, 0, 0, 0, 0},
 	    {0, 0, 0, 0, 0, 0, 0},
@@ -38,12 +39,24 @@ public class Tests {
 	);
     }
 
+    public boolean generatePossibleMovesTest1() {
+	ArrayList<Integer> expectedAvailableMoves = new ArrayList<>(Arrays.asList(0,1,2,3,4,5,6));
+
+	Board test = new Board();
+	ArrayList<Integer> availableMoves = test.generatePossibleMoves();
+
+	return (
+	    expectedAvailableMoves.equals(availableMoves)
+	);
+    }
+
     public void main(String[] args) {
 	System.out.println("------------- Start Of Tests --------------------");
 	System.out.println();
 
 	// Tests
-	checkTest("testBoardInit", () -> testBoardInit());
+	checkTest("boardInitTest", () -> boardInitTest());
+	checkTest("generatePossibleMovesTest1", () -> generatePossibleMovesTest1());
 
 	System.out.println();
 	System.out.println("-------------- End Of Tests ---------------------");
