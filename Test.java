@@ -12,6 +12,7 @@ public class Test {
 	checkTest("boardInitTest", () -> boardInitTest());
 	checkTest("generatePossibleMovesTest1", () -> generatePossibleMovesTest1());
 	checkTest("generatePossibleMovesTest2", () -> generatePossibleMovesTest2());
+	checkTest("testMoveTest1", () -> testMoveTest1());
 
 	System.out.println();
 	System.out.println("-------------- End Of Tests ---------------------");
@@ -78,11 +79,30 @@ public class Test {
 	Board test = new Board();
 	test.board = testBoard;
 
-	ArrayList availableMoves = test.generatePossibleMoves();
+	ArrayList<Integer> availableMoves = test.generatePossibleMoves();
 
 	return (
 	    expectedAvailableMoves.equals(availableMoves)
 	);
     }
+    
+    public boolean testMoveTest1() {
+	int[][] expectedBoardState = new int[][]{
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 1, 0, 0, 0}
+	};
+	boolean expectedIsFirstPlayerTurn = false;
 
+	Board test1 = new Board();
+	Board test2 = test1.testMove(3);
+
+	return (
+	    Arrays.deepEquals(test2.board, expectedBoardState) &&
+	    test2.isFirstPlayerTurn == expectedIsFirstPlayerTurn
+	);
+    }
 }
