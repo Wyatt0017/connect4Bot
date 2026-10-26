@@ -17,6 +17,7 @@ public class Test {
 
 	System.out.println();
 	System.out.println("-------------- End Of Tests ---------------------");
+	System.out.format("Successful: %d%nFailed without error: %d%nFailed with error: %d%nTotal: %d%n", testsSuccessful, testsFailedWithoutError, testsFailedWithError, totalTests);
     }
 
     @FunctionalInterface 
@@ -24,21 +25,30 @@ public class Test {
 	boolean test();
     }
 
+    int testsSuccessful = 0;
+    int testsFailedWithoutError = 0;
+    int testsFailedWithError = 0;
+    int totalTests = 0;
+
     public void checkTest(String testName, UnitTest methodName) {
 	boolean result = false;
+	totalTests++;
 
 	try {
 	    result = methodName.test();
 	}
 	catch (Exception e) {
 	    System.out.format("Test \"%s\" Failed with error: %s%n", testName, e.getMessage());
+	    testsFailedWithError++;
 	    return;
 	}
 	if (result) {
 	    System.out.format("Test \"%s\" Passed%n", testName);
+	    testsSuccessful++;
 	}
 	else {
 	    System.out.format("Test \"%s\" Failed!%n", testName);
+	    testsFailedWithoutError++;
 	}
     }
 
