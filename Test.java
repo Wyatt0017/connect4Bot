@@ -50,6 +50,28 @@ public class Test {
 	);
     }
 
+    public boolean generatePossibleMovesTest2() {
+	ArrayList<Integer> expectedAvailableMoves = new ArrayList<>(Arrays.asList(0,1,2,4,5,6));
+
+	int[][] testBoard = new int[][]{
+	    {0, 0, 0, 2, 0, 0, 0},
+	    {0, 0, 0, 1, 0, 0, 0},
+	    {0, 0, 0, 2, 0, 0, 0},
+	    {0, 0, 0, 1, 0, 0, 0},
+	    {0, 0, 0, 2, 0, 0, 0},
+	    {0, 0, 0, 1, 0, 0, 0},
+	};
+
+	Board test = new Board();
+	test.board = testBoard;
+
+	ArrayList availableMoves = test.generatePossibleMoves();
+
+	return (
+	    expectedAvailableMoves.equals(availableMoves)
+	);
+    }
+
     public void main(String[] args) {
 	System.out.println("------------- Start Of Tests --------------------");
 	System.out.println();
@@ -57,6 +79,7 @@ public class Test {
 	// Tests
 	checkTest("boardInitTest", () -> boardInitTest());
 	checkTest("generatePossibleMovesTest1", () -> generatePossibleMovesTest1());
+	checkTest("generatePossibleMovesTest2", () -> generatePossibleMovesTest2());
 
 	System.out.println();
 	System.out.println("-------------- End Of Tests ---------------------");
