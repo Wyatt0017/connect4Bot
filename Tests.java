@@ -4,11 +4,11 @@ import java.util.Arrays;
 public class Tests {
 
     @FunctionalInterface 
-    public interface MethodName {
+    public interface UnitTest {
 	boolean test();
     }
 
-    public void checkTest(String testName, MethodName methodName) {
+    public void checkTest(String testName, UnitTest methodName) {
 	boolean result = methodName.test();
 	if (result) {
 	    System.out.format("Test \"%s\" Passed%n", testName);
