@@ -13,6 +13,7 @@ public class Test {
 	checkTest("generatePossibleMovesTest1", () -> generatePossibleMovesTest1());
 	checkTest("generatePossibleMovesTest2", () -> generatePossibleMovesTest2());
 	checkTest("testMoveTest1", () -> testMoveTest1());
+	checkTest("testMoveTest2", () -> testMoveTest2());
 
 	System.out.println();
 	System.out.println("-------------- End Of Tests ---------------------");
@@ -103,6 +104,27 @@ public class Test {
 	return (
 	    Arrays.deepEquals(test2.board, expectedBoardState) &&
 	    test2.isFirstPlayerTurn == expectedIsFirstPlayerTurn
+	);
+    }
+
+    public boolean testMoveTest2() {
+	int[][] expectedBoardState = new int[][]{
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 2, 0, 0, 0},
+	    {0, 0, 0, 1, 0, 0, 0},
+	};
+	boolean expectedIsFirstPlayerTurn = true;
+
+	Board test1 = new Board();
+	Board test2 = test1.testMove(3);
+	Board test3 = test2.testMove(3);
+
+	return (
+	    Arrays.deepEquals(test3.board, expectedBoardState) &&
+	    test3.isFirstPlayerTurn == expectedIsFirstPlayerTurn
 	);
     }
 }
