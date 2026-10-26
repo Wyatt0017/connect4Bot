@@ -25,12 +25,20 @@ public class Test {
     }
 
     public void checkTest(String testName, UnitTest methodName) {
-	boolean result = methodName.test();
+	boolean result = false;
+
+	try {
+	    result = methodName.test();
+	}
+	catch (Exception e) {
+	    System.out.format("Test \"%s\" Failed with error: %s%n", testName, e.getMessage());
+	    return;
+	}
 	if (result) {
 	    System.out.format("Test \"%s\" Passed%n", testName);
 	}
 	else {
-	    System.out.format("Test \"%s\" Failed!!!!!!!!!!!%n", testName);
+	    System.out.format("Test \"%s\" Failed!%n", testName);
 	}
     }
 
