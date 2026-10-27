@@ -69,20 +69,50 @@ public class Board {
 	this.isFirstPlayerTurn = currentBoard.isFirstPlayerTurn;
     }
 
+    private boolean hasPlayerWonRow(int r, int c, int player) {
+	for (int i = 0; i < 4; i++) {
+	    if (this.board[r][c+i] != player) {
+		return false;
+	    }
+	}
+	return true;
+    }
+
+    private boolean hasPlayerWonColumn(int r, int c, int player) {
+	for (int i = 0; i < 4; i++) {
+	    if (this.board[r+i][c] != player) {
+		return false;
+	    }
+	}
+	return true;
+    }
+
+    private boolean hasPlayerWonDiagonalUp(int r, int c, int player) {
+	for (int i = 0; i < 4; i++) {
+	    if (this.board[r-i][c+i] != player) {
+		return false;
+	    }
+	}
+	return true;
+    }
+
+    private boolean hasPlayerWonDiagonalDown(int r, int c, int player) {
+	for (int i = 0; i < 4; i++) {
+	    if (this.board[r+i][c+i] != player) {
+		return false;
+	    }
+	}
+	return true;
+    }
+
     public boolean hasPlayerWon(int player) {
 	boolean isWin = false;
 
 	// Check rows for win
 	for (int row = 0; row < this.board.length; row++) {
 	    for (int col = 0; col < this.board[0].length -3; col++) {
-		// 4 in a row
-		for (int index = 0; index < 4; index++) {
-		    if (this.board[row][col+index] != player) {
-			break;
-		    }
-		    if (index == 3) {
-			isWin = true;
-		    }
+		if (hasPlayerWonRow(row, col, player)) {
+		    isWin = true;
 		}
 	    }
 	}
@@ -90,29 +120,26 @@ public class Board {
 	// Check cols for win
 	for (int row = 0; row < this.board.length -3; row++) {
 	    for (int col = 0; col < this.board[0].length; col++) {
-		// 4 in a row
-		for (int index = 0; index < 4; index++) {
-		    if (this.board[row+index][col] != player) {
-			break;
-		    }
-		    if (index == 3) {
-			isWin = true;
-		    }
+		if (hasPlayerWonColumn(row, col, player)) {
+		    isWin = true;
 		}
 	    }
 	}
 
-	// Check Diag for win
+	// Check Diagonal Up for win
+	for (int row = 3; row < this.board.length; row++) {
+	    for (int col = 0; col < this.board[0].length -3; col++) {
+		if (hasPlayerWonDiagonalUp(row, col, player)) {
+		    isWin = true;
+		}
+	    }
+	}
+
+	// Check Diagonal Down for win
 	for (int row = 0; row < this.board.length -3; row++) {
 	    for (int col = 0; col < this.board[0].length -3; col++) {
-		// 4 in a row
-		for (int index = 0; index < 4; index++) {
-		    if (this.board[row+index][col+index] != player) {
-			break;
-		    }
-		    if (index == 3) {
-			isWin = true;
-		    }
+		if (hasPlayerWonDiagonalDown(row, col, player)) {
+		    isWin = true;
 		}
 	    }
 	}
