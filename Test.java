@@ -19,6 +19,8 @@ public class Test {
 	checkTest("hasPlayerWonRowTest1", () -> hasPlayerWonRowTest1());
 	checkTest("hasPlayerWonRowTest2", () -> hasPlayerWonRowTest2());
 	checkTest("hasPlayerWonColumnTest", () -> hasPlayerWonColumnTest());
+	checkTest("hasPlayerWonDiagonalUpTest", () -> hasPlayerWonDiagonalUpTest());
+	checkTest("hasPlayerWonDiagonalDownTest", () -> hasPlayerWonDiagonalDownTest());
 
 	System.out.println();
 	System.out.println("-------------- End Of Tests ---------------------");
@@ -245,6 +247,42 @@ public class Test {
 	    {0, 0, 0, 0, 0, 2, 1},
 	};
 
+	boolean firstPlayerTurn = false;
+
+	Board test = new Board();
+	test.board = boardState;
+	test.isFirstPlayerTurn = firstPlayerTurn;
+
+	return test.hasPlayerWon(1);
+    }
+
+    public boolean hasPlayerWonDiagonalUpTest() {
+	int[][] boardState = new int[][]{
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 2, 1},
+	    {0, 0, 0, 0, 0, 1, 1},
+	    {0, 0, 0, 0, 1, 2, 2},
+	    {0, 0, 0, 1, 2, 2, 1}
+	};
+	boolean firstPlayerTurn = false;
+
+	Board test = new Board();
+	test.board = boardState;
+	test.isFirstPlayerTurn = firstPlayerTurn;
+
+	return test.hasPlayerWon(1);
+    }
+
+    public boolean hasPlayerWonDiagonalDownTest() {
+	int[][] boardState = new int[][]{
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 1, 0, 0, 0},
+	    {0, 0, 0, 1, 1, 0, 0},
+	    {0, 0, 0, 2, 2, 1, 2},
+	    {0, 0, 0, 1, 2, 2, 1}
+	};
 	boolean firstPlayerTurn = false;
 
 	Board test = new Board();
