@@ -147,6 +147,14 @@ public class Board {
 	return isWin;
     }
 
+    public boolean isDraw() {
+	return (
+	    !this.hasPlayerWon(1) &&
+	    !this.hasPlayerWon(2) &&
+	    this.generatePossibleMoves().isEmpty()
+	); 
+    }
+    
     public void printBoard() {
 	System.out.println("Current Board:");
 	// Print the current board rows
