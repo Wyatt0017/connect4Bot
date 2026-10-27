@@ -15,6 +15,7 @@ public class Test {
 	checkTest("testMoveTest1", () -> testMoveTest1());
 	checkTest("testMoveTest2", () -> testMoveTest2());
 	checkTest("testMoveErrorTest", () -> testMoveErrorTest());
+	checkTest("playMoveTest", () -> playMoveTest());
 
 	System.out.println();
 	System.out.println("-------------- End Of Tests ---------------------");
@@ -170,5 +171,26 @@ public class Test {
 	    throw e;
 	}
 	return false;
+    }
+
+    public boolean playMoveTest() {
+	int[][] expectedBoardState = {
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 1, 0, 0, 0},
+	};
+	boolean expectedIsFirstPlayerTurn = false;
+
+	
+	Board test = new Board();
+	test.playMove(3);
+
+	return (
+	    Arrays.deepEquals(expectedBoardState, test.board) &&
+	    test.isFirstPlayerTurn == expectedIsFirstPlayerTurn
+	);
     }
 }
