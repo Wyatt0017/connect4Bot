@@ -16,6 +16,8 @@ public class Test {
 	checkTest("testMoveTest2", () -> testMoveTest2());
 	checkTest("testMoveErrorTest", () -> testMoveErrorTest());
 	checkTest("playMoveTest", () -> playMoveTest());
+	checkTest("hasPlayerWonRowTest1", () -> hasPlayerWonRowTest1());
+	checkTest("hasPlayerWonRowTest2", () -> hasPlayerWonRowTest2());
 
 	System.out.println();
 	System.out.println("-------------- End Of Tests ---------------------");
@@ -193,4 +195,43 @@ public class Test {
 	    test.isFirstPlayerTurn == expectedIsFirstPlayerTurn
 	);
     }
+
+    public boolean hasPlayerWonRowTest1() {
+	int[][] boardState = {
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 2, 2, 2, 0, 0, 0},
+	    {0, 1, 1, 1, 1, 0, 0}
+	};
+	boolean firstPlayerTurn = false;
+
+	Board test = new Board();
+
+	test.board = boardState;
+	test.isFirstPlayerTurn = firstPlayerTurn;
+
+	return test.hasPlayerWon(1);
+    }
+
+    public boolean hasPlayerWonRowTest2() {
+	int[][] boardState = {
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 1, 1, 0, 0, 0, 0},
+	    {0, 1, 1, 2, 2, 2, 2}
+	};
+	boolean firstPlayerTurn = true;
+
+	Board test = new Board();
+
+	test.board = boardState;
+	test.isFirstPlayerTurn = firstPlayerTurn;
+
+	return test.hasPlayerWon(2);
+    }
+
 }
