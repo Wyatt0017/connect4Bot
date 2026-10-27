@@ -10,6 +10,11 @@ public class Board {
     public final int FIRST_PLAYER_SPACE = 1;
     public final int SECOND_PLAYER_SPACE = 2;
 
+    @FunctionalInterface
+    public interface Player {
+	int playMove(Board board);
+    }
+
     public Board() {
 	this.board = new int[6][7];
 	this.isFirstPlayerTurn = true;
@@ -170,5 +175,21 @@ public class Board {
     public int getUserInput(Scanner input) {
 	System.out.print("What move do you make?: ");
 	return Integer.parseInt(input.nextLine());
+    }
+
+    public void GameLoop(Player player1, Player player2) {
+        Boolean isGameOver = false;
+        this.printBoard();
+
+        while (isGameOver == false){
+	    if (this.isFirstPlayerTurn) {
+		player1.playMove(this);
+	    }
+	    else {
+		player2.playMove(this);
+	    }
+
+            isGameOver = this.hasPlayerWon(1) || this.hasPlayerWon(2) || this.isDraw();
+        }
     }
 }
