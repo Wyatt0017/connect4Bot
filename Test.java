@@ -21,6 +21,7 @@ public class Test {
 	checkTest("hasPlayerWonColumnTest", () -> hasPlayerWonColumnTest());
 	checkTest("hasPlayerWonDiagonalUpTest", () -> hasPlayerWonDiagonalUpTest());
 	checkTest("hasPlayerWonDiagonalDownTest", () -> hasPlayerWonDiagonalDownTest());
+	checkTest("isDrawTest", () -> isDrawTest());
 
 	System.out.println();
 	System.out.println("-------------- End Of Tests ---------------------");
@@ -290,5 +291,21 @@ public class Test {
 	test.isFirstPlayerTurn = firstPlayerTurn;
 
 	return test.hasPlayerWon(1);
+    }
+
+    public boolean isDrawTest() {
+	int[][] boardState = new int[][] {
+	    {2, 2, 2, 1, 1, 1, 2},
+	    {1, 1, 1, 2, 2, 2, 1},
+	    {2, 2, 2, 1, 1, 1, 2},
+	    {1, 1, 1, 2, 2, 2, 1},
+	    {2, 2, 2, 1, 1, 1, 2},
+	    {1, 1, 1, 2, 2, 2, 1}
+	};
+
+	Board test = new Board();
+	test.board = boardState;
+
+	return test.isDraw();
     }
 }
