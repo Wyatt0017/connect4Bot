@@ -192,4 +192,20 @@ public class Board {
             isGameOver = this.hasPlayerWon(1) || this.hasPlayerWon(2) || this.isDraw();
         }
     }
+
+	public int UserMove() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please choose a move: ");
+		int choice =0;
+		while (true) {
+			choice = Integer.parseInt(input.nextLine());
+			if(choice >= 0 && choice <7){
+				break;
+			} else {
+				System.out.print("Please choose a move: ");
+			}
+		}
+		input.close();
+		return choice;
+	}
 }
