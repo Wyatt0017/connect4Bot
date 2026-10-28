@@ -1,13 +1,9 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Bot {
-    public Board currentBoardState;
 
-    final int MAX_DEPTH = 8;
-
-    public Bot (Board currentState) {
-	this.currentBoardState = currentState;
-    }
+    final int MAX_DEPTH = 6;
 
     public int minimax(Board gameState, int depth) {
 	if (gameState.hasPlayerWon(1)) {
@@ -45,7 +41,7 @@ public class Bot {
 	return bestScore;
     }
 
-    public int playMove(Board gameState) {
+    public int playMove(Board gameState, Scanner input) {
 	int bestMove = -1;
 	int bestMoveScore;
 	int testMoveScore;

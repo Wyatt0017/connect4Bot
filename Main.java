@@ -1,15 +1,15 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static void main() {
-	Scanner input = new Scanner(System.in);
+    public void main() {
 	Board game = new Board();
-	while (true) {
-	    game.printBoard();
-	    int userChoice = Integer.parseInt(input.nextLine());
-	    game.playMove(userChoice);
-	}
+	Bot bot = new Bot();
+
+	Scanner input = new Scanner(System.in);
+
+	game.GameLoop(game::UserMove, bot::playMove, input);
+
+	input.close();
 
   }
 }

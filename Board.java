@@ -12,7 +12,7 @@ public class Board {
 
     @FunctionalInterface
     public interface Player {
-	int playMove(Board board);
+	int playMove(Board board, Scanner input);
     }
 
     public Board() {
@@ -177,35 +177,36 @@ public class Board {
 	return Integer.parseInt(input.nextLine());
     }
 
-    public void GameLoop(Player player1, Player player2) {
+    public void GameLoop(Player player1, Player player2, Scanner input) {
         Boolean isGameOver = false;
         this.printBoard();
+	int move;
 
         while (isGameOver == false){
 	    if (this.isFirstPlayerTurn) {
-		player1.playMove(this);
+		move = player1.playMove(this, input);
 	    }
 	    else {
-		player2.playMove(this);
+		move = player2.playMove(this, input);
 	    }
-
+	    
+	    this.playMove(move);
             isGameOver = this.hasPlayerWon(1) || this.hasPlayerWon(2) || this.isDraw();
         }
     }
 
-	public int UserMove() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("Please choose a move: ");
-		int choice =0;
-		while (true) {
-			choice = Integer.parseInt(input.nextLine());
-			if(choice >= 0 && choice <7){
-				break;
-			} else {
-				System.out.print("Please choose a move: ");
-			}
+    public int UserMove(Board boardState, Scanner input) {
+	boardState.printBoard();	
+	System.out.print("Please choose a move: ");
+	int choice =0;
+	while (true) {
+		choice = Integer.parseInt(input.nextLine());
+		if(choice >= 0 && choice <7){
+			break;
+		} else {
+			System.out.print("Please choose a move: ");
 		}
-		input.close();
-		return choice;
 	}
+	return choice;
+    }
 }
