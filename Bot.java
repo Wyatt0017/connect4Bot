@@ -56,7 +56,7 @@ public class Bot {
 		    MAX_DEPTH
 		);
 
-		if (testMoveScore >= bestMoveScore) {
+		if (testMoveScore > bestMoveScore) {
 		    bestMove = possibleMoves.get(i);
 		    bestMoveScore = testMoveScore;
 		}

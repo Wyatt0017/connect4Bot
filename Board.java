@@ -199,6 +199,17 @@ public class Board {
 	    this.playMove(move);
             isGameOver = this.hasPlayerWon(1) || this.hasPlayerWon(2) || this.isDraw();
         }
+
+	this.printBoard();
+	if (this.hasPlayerWon(1)) {
+	    System.out.println("Player 1 won!");
+	}
+	else if (this.hasPlayerWon(2)) {
+	    System.out.println("Player 2 won!");
+	}
+	else {
+	    System.out.println("Game ended in a draw! :(");
+	}
     }
 
     public int UserMove(Board boardState, Scanner input) {
