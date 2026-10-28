@@ -165,16 +165,22 @@ public class Board {
 	// Print the current board rows
 	for (int rows = 0; rows < 6; rows++) {
 	    for (int columns = 0; columns < 7; columns++) {
-		System.out.print("|"+this.board[rows][columns]);
+		System.out.print(" ");
+		if (this.board[rows][columns] == 0) {
+		    System.out.print("-");
+		}
+		else if (this.board[rows][columns] == 1) {
+		    System.out.print("X");
+		}
+		else {
+		    System.out.print("O");
+		}
 	    }
-	    System.out.println("|");
+	    System.out.println(" ");
         }
 	System.out.println();
-    }
-
-    public int getUserInput(Scanner input) {
-	System.out.print("What move do you make?: ");
-	return Integer.parseInt(input.nextLine());
+	System.out.println(" 1 2 3 4 5 6 7 ");
+	System.out.println();
     }
 
     public void GameLoop(Player player1, Player player2, Scanner input) {
@@ -201,12 +207,12 @@ public class Board {
 	int choice =0;
 	while (true) {
 		choice = Integer.parseInt(input.nextLine());
-		if(choice >= 0 && choice <7){
+		if(choice >= 1 && choice <8){
 			break;
 		} else {
 			System.out.print("Please choose a move: ");
 		}
 	}
-	return choice;
+	return choice - 1;
     }
 }
