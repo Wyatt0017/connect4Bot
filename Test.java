@@ -171,7 +171,7 @@ public class Test {
 	    test.testMove(3);
 	}
 	catch (Exception e) {
-	    if (e.getMessage().equals("Invalid column given")) {
+	    if (e.getMessage().equals("Invalid column given, column given: 3")) {
 		return true;
 	    }
 	    throw e;

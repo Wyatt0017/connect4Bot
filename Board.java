@@ -72,8 +72,6 @@ public class Board {
 
 	this.board = currentBoard.board;
 	this.isFirstPlayerTurn = currentBoard.isFirstPlayerTurn;
-
-	this.printBoard();
     }
 
     private boolean hasPlayerWonRow(int r, int c, int player) {
