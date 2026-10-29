@@ -3,7 +3,13 @@ import java.util.Scanner;
 
 public class Bot {
 
-    final int MAX_DEPTH = 6;
+    int maxDepth = 6;
+    boolean isDebugOn = false;
+
+    public Bot(int depth, boolean isDebugOn) {
+	this.maxDepth = depth;
+	this.isDebugOn = isDebugOn;
+    }
 
     public int minimax(Board gameState, int depth) {
 	if (gameState.hasPlayerWon(1)) {
@@ -42,11 +48,12 @@ public class Bot {
     }
 
     public int playMove(Board gameState, Scanner input) {
-	int bestMove = -1;
-	int bestMoveScore;
-	int testMoveScore;
 
 	ArrayList<Integer> possibleMoves = gameState.generatePossibleMoves();
+
+	int bestMove = possibleMoves.get(0);
+	int bestMoveScore;
+	int testMoveScore;
 
 	if (gameState.isFirstPlayerTurn) {
 	    bestMoveScore = Integer.MIN_VALUE;
@@ -70,7 +77,7 @@ public class Bot {
 		    MAX_DEPTH
 		);
 
-		if (testMoveScore <= bestMoveScore) {
+		if (testMoveScore < bestMoveScore) {
 		    bestMove = possibleMoves.get(i);
 		    bestMoveScore = testMoveScore;
 		}

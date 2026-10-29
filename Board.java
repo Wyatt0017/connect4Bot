@@ -37,7 +37,7 @@ public class Board {
 
 	// Error Handling
 	if (!possibleMoves.contains(column)) {
-	    throw new IllegalArgumentException("Invalid column given");
+	    throw new IllegalArgumentException("Invalid column given, column given: " + column);
 	}
 
 	Board testBoard = new Board();
@@ -72,6 +72,8 @@ public class Board {
 
 	this.board = currentBoard.board;
 	this.isFirstPlayerTurn = currentBoard.isFirstPlayerTurn;
+
+	this.printBoard();
     }
 
     private boolean hasPlayerWonRow(int r, int c, int player) {
