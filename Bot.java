@@ -14,10 +14,10 @@ public class Bot {
 
     public int minimax(Board gameState, int depth) {
 	if (gameState.hasPlayerWon(1)) {
-	    return 100000 * (depth + 1);
+	    return 10000000 * (depth + 1);
 	}
 	if (gameState.hasPlayerWon(2)) {
-	    return -100000 * (depth + 1);
+	    return -10000000 * (depth + 1);
 	}
 	if (gameState.isDraw()) {
 	    return 0;
@@ -93,10 +93,26 @@ public class Bot {
 
 	if (this.isDebugOn) {
 	    for (int i = 0; i < 7; i++) {
+		// If move is not possible
+		if (!possibleMoves.contains(i)) {
+		    continue;
+		}
+
+		if (Math.abs(moveEval[i]) >= 10000000) {
+		    if (moveEval[i] > 0) {
+			int turnsTillMate = (maxDepth - moveEval[i] / 10000000) / 2 + 1;
+			System.out.format("Column %d: +M%d%n", i+1, turnsTillMate);
+			continue;
+		    } else {
+			int turnsTillMate = (maxDepth - Math.abs(moveEval[i]) / 10000000) / 2 + 1;
+			System.out.format("Column %d: -M%d%n", i+1, turnsTillMate);
+			continue;
+		    }
+		}
 		if (moveEval[i] > 0) {
-		    System.out.format("Column %d: +%d%n", i, moveEval[i]);
+		    System.out.format("Column %d: +%d%n", i+1, moveEval[i]);
 		} else {
-		    System.out.format("Column %d: %d%n", i, moveEval[i]);
+		    System.out.format("Column %d: %d%n", i+1, moveEval[i]);
 		}
 	    }
 	}
