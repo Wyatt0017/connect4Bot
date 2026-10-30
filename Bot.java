@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays; 
 import java.util.Scanner;
 
 public class Bot {
@@ -51,6 +52,8 @@ public class Bot {
 
 	ArrayList<Integer> possibleMoves = gameState.generatePossibleMoves();
 
+	int[] moveEval = new int[7];
+
 	int bestMove = possibleMoves.get(0);
 	int bestMoveScore;
 	int testMoveScore;
@@ -60,8 +63,10 @@ public class Bot {
 	    for (int i = 0; i < possibleMoves.size(); i++) {
 		testMoveScore = minimax(
 		    gameState.testMove(possibleMoves.get(i)),
-		    MAX_DEPTH
+		    maxDepth
 		);
+
+		moveEval[possibleMoves.get(i)] = testMoveScore;
 
 		if (testMoveScore > bestMoveScore) {
 		    bestMove = possibleMoves.get(i);
@@ -74,8 +79,10 @@ public class Bot {
 	    for (int i = 0; i < possibleMoves.size(); i++) {
 		testMoveScore = minimax(
 		    gameState.testMove(possibleMoves.get(i)),
-		    MAX_DEPTH
+		    maxDepth
 		);
+
+		moveEval[possibleMoves.get(i)] = testMoveScore;
 
 		if (testMoveScore < bestMoveScore) {
 		    bestMove = possibleMoves.get(i);
@@ -84,6 +91,11 @@ public class Bot {
 	    }
 	}
 
+	if (this.isDebugOn) {
+	    for (int i = 0; i < 7; i++) {
+		System.out.format("Column %d: %d%n", i, moveEval[i]);
+	    }
+	}
 	return bestMove;
     }
 
