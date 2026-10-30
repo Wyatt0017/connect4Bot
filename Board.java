@@ -20,6 +20,19 @@ public class Board {
 	this.isFirstPlayerTurn = true;
     }
 
+    public void reset() {
+	this.board = new int[][] {
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 0, 0, 0, 0}
+	};
+
+	this.isFirstPlayerTurn = true;
+    }
+
     public ArrayList<Integer> generatePossibleMoves() {
 	ArrayList<Integer> possibleMoves = new ArrayList<Integer>();
 
