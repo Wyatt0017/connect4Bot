@@ -14,10 +14,10 @@ public class Bot {
 
     public int minimax(Board gameState, int depth) {
 	if (gameState.hasPlayerWon(1)) {
-	    return Integer.MAX_VALUE;
+	    return 100000 * (depth + 1);
 	}
 	if (gameState.hasPlayerWon(2)) {
-	    return Integer.MIN_VALUE;
+	    return -100000 * (depth + 1);
 	}
 	if (gameState.isDraw()) {
 	    return 0;
