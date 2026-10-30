@@ -93,7 +93,11 @@ public class Bot {
 
 	if (this.isDebugOn) {
 	    for (int i = 0; i < 7; i++) {
-		System.out.format("Column %d: %d%n", i, moveEval[i]);
+		if (moveEval[i] > 0) {
+		    System.out.format("Column %d: +%d%n", i, moveEval[i]);
+		} else {
+		    System.out.format("Column %d: %d%n", i, moveEval[i]);
+		}
 	    }
 	}
 	return bestMove;
